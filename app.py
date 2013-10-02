@@ -9,6 +9,24 @@ app.config.update(
     DEBUG = True,
 )
 
+app.config["SECRET_KEY"] = 'a\xf1\xe3\xc3\x13[^\xa9\x87\xdd\xafv\x14\xc5\xd9r\x1e\x05&\x9cP\xe7\xf3\xa2'
+
+#----------------------------------------
+# database
+#----------------------------------------
+
+from mongoengine import connect
+from flask.ext.mongoengine import MongoEngine
+
+DB_NAME = 'metaedge'
+DB_USERNAME = 'metaedge'
+DB_PASSWORD = 'spring'
+DB_HOST_ADDRESS = 'ds047448.mongolab.com:47448/metaedge'
+
+app.config["MONGODB_DB"] = DB_NAME
+connect(DB_NAME, host='mongodb://' + DB_USERNAME + ':' + DB_PASSWORD + '@' + DB_HOST_ADDRESS)
+db = MongoEngine(app)
+
 # -------------------------
 #    controllers
 # -------------------------
